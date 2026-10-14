@@ -1,0 +1,685 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  html, body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #FDFDFB;
+    color: #141312;
+    scroll-behavior: smooth;
+    font-variant-numeric: lining-nums tabular-nums;
+    -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .dark html, .dark body, html.dark, body.dark {
+    background-color: #0E0E0D;
+    color: #F0ECE4;
+  }
+
+  /* Force all numbers in headings, cards, tables, prices to be clean modern lining figures */
+  .font-serif, h1, h2, h3, h4, h5, h6, table, .card, p, span, button, input {
+    font-variant-numeric: lining-nums tabular-nums;
+    -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+  }
+
+  ::selection {
+    background-color: #D4AF37;
+    color: #0E0E0D;
+  }
+
+  /* Custom luxury scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FDFDFB;
+  }
+  .dark ::-webkit-scrollbar-track {
+    background: #0E0E0D;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #EBE7DF;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #66625C;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #2A2825;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #ADA79E;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply relative overflow-hidden bg-gradient-to-r from-[#B8860B] via-[#C99718] to-[#8C6514] dark:from-gold-500 dark:via-amber-400 dark:to-gold-600 text-white dark:text-dark-950 font-semibold px-6 py-3 rounded-full shadow-sm hover:shadow-glow-gold hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 tracking-wide text-sm inline-flex items-center justify-center gap-2 cursor-pointer;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    transform: skewX(-20deg);
+    transition: none;
+    pointer-events: none;
+  }
+  .btn-primary:hover::after {
+    left: 140%;
+    transition: left 0.75s ease-in-out;
+  }
+
+  .btn-outline {
+    @apply relative overflow-hidden border border-amber-800/30 dark:border-gold-500/40 text-amber-900 dark:text-gold-400 font-medium px-6 py-3 rounded-full hover:bg-amber-600/10 dark:hover:bg-gold-500/10 hover:border-amber-700 dark:hover:border-gold-400 hover:text-amber-950 dark:hover:text-gold-300 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 tracking-wide text-sm inline-flex items-center justify-center gap-2 cursor-pointer;
+  }
+  .btn-outline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    transform: skewX(-20deg);
+    transition: none;
+    pointer-events: none;
+  }
+  .btn-outline:hover::after {
+    left: 140%;
+    transition: left 0.75s ease-in-out;
+  }
+
+  .btn-glass {
+    @apply relative overflow-hidden backdrop-blur-md bg-stone-900/[0.04] dark:bg-white/5 px-5 py-2.5 rounded-full hover:bg-stone-900/[0.08] dark:hover:bg-white/10 hover:border-stone-400 dark:hover:border-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-sm inline-flex items-center justify-center gap-2 cursor-pointer;
+    border: 1px solid #EBE7DF;
+    color: #141312;
+  }
+  .dark .btn-glass {
+    border-color: #2A2825;
+    color: #F0ECE4;
+  }
+
+  .card {
+    @apply rounded-2xl p-6 shadow-light-card dark:shadow-2xl hover:border-amber-600/40 dark:hover:border-gold-500/35 transition-all duration-300;
+    background-color: #F6F4EE;
+    border: 1px solid #EBE7DF;
+    color: #141312;
+  }
+  .dark .card,
+  html.dark .card {
+    background-color: #1A1917 !important;
+    border-color: #2A2825 !important;
+    color: #F0ECE4 !important;
+  }
+
+  .card-glass {
+    @apply backdrop-blur-xl rounded-2xl p-6 shadow-light-card dark:shadow-glow-card;
+    background-color: rgba(246, 244, 238, 0.92);
+    border: 1px solid #EBE7DF;
+    color: #141312;
+  }
+  .dark .card-glass,
+  html.dark .card-glass {
+    background-color: rgba(26, 25, 23, 0.92) !important;
+    border-color: #2A2825 !important;
+    color: #F0ECE4 !important;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-600 dark:focus:border-gold-500 focus:ring-1 focus:ring-amber-500/40 dark:focus:ring-gold-500/50 transition-all;
+    background-color: #FFFFFF;
+    border: 1px solid #EBE7DF;
+    color: #141312;
+  }
+  .input-field::placeholder {
+    color: #66625C;
+  }
+  .dark .input-field,
+  html.dark .input-field {
+    background-color: #0E0E0D !important;
+    border-color: #2A2825 !important;
+    color: #F0ECE4 !important;
+  }
+  .dark .input-field::placeholder,
+  html.dark .input-field::placeholder {
+    color: #ADA79E !important;
+  }
+
+  .gold-gradient-text {
+    @apply bg-gradient-to-r from-amber-800 via-[#A07010] to-amber-900 dark:from-gold-300 dark:via-gold-400 dark:to-amber-200 bg-clip-text text-transparent;
+  }
+
+  .badge-gold {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase bg-amber-600/10 dark:bg-gold-500/10 text-amber-800 dark:text-gold-400 border border-amber-600/25 dark:border-gold-500/30;
+  }
+}
+
+/* ==========================================================================
+   Light Mode Global Adaptive Overrides (The "Grand Lobby")
+   ========================================================================== */
+html:not(.dark) .min-h-screen.bg-dark {
+  background-color: #FDFDFB !important;
+}
+
+html:not(.dark) .bg-dark {
+  background-color: #FDFDFB !important;
+}
+
+html:not(.dark) .bg-\[\#FDFDFB\],
+html:not(.dark) .bg-\[\#FAF9F6\] {
+  background-color: #FDFDFB !important;
+}
+
+html:not(.dark) .bg-\[\#F6F4EE\] {
+  background-color: #F6F4EE !important;
+}
+
+/* Match all bg-dark-950 variants (panels, filter bars, subtle headers) */
+html:not(.dark) [class*="bg-dark-950"] {
+  background-color: #F6F4EE !important;
+  color: #141312 !important;
+}
+
+/* Match all bg-dark-900 variants (cards, table bodies, modal cards, review cards) */
+html:not(.dark) [class*="bg-dark-900"] {
+  background-color: #F6F4EE !important;
+  color: #141312 !important;
+}
+
+/* Match all bg-dark-800 variants (hover states, subtle divider boxes) */
+html:not(.dark) [class*="bg-dark-800"] {
+  background-color: #EBE7DF !important;
+}
+
+/* Match all dark border variants */
+html:not(.dark) [class*="border-dark-700"],
+html:not(.dark) [class*="border-dark-800"] {
+  border-color: #EBE7DF !important;
+}
+
+html:not(.dark) [class*="border-white/5"],
+html:not(.dark) [class*="border-white/10"],
+html:not(.dark) [class*="border-white/20"] {
+  border-color: #EBE7DF !important;
+}
+
+/* Cards across all views in light mode - Warm Travertine Stone Surface (#F6F4EE) */
+html:not(.dark) .card {
+  background-color: #F6F4EE !important;
+  border-color: #EBE7DF !important;
+  color: #141312 !important;
+  box-shadow: 0 10px 30px -10px rgba(120, 80, 20, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+}
+
+html:not(.dark) .card:hover {
+  background-color: #FDFDFB !important;
+  border-color: rgba(184, 134, 11, 0.4) !important;
+}
+
+/* Active gold backgrounds in light mode */
+html:not(.dark) .bg-gold-500 {
+  background-color: #B8860B !important;
+  color: #FFFFFF !important;
+}
+html:not(.dark) .bg-gold-500.text-dark-950,
+html:not(.dark) .bg-gold-500 * {
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) .border-gold-500,
+html:not(.dark) .border-gold-500\/40,
+html:not(.dark) .border-gold-500\/50,
+html:not(.dark) .border-gold-500\/60 {
+  border-color: #C99718 !important;
+}
+
+/* Light mode tables & rows */
+html:not(.dark) table {
+  background-color: #F6F4EE !important;
+}
+
+html:not(.dark) thead,
+html:not(.dark) thead[class*="bg-dark"] {
+  background-color: #EBE7DF !important;
+  color: #66625C !important;
+}
+
+html:not(.dark) thead th {
+  background-color: #EBE7DF !important;
+  color: #66625C !important;
+  border-color: #EBE7DF !important;
+}
+
+html:not(.dark) tbody,
+html:not(.dark) tbody[class*="divide-dark"] {
+  background-color: #F6F4EE !important;
+  border-color: #EBE7DF !important;
+}
+
+html:not(.dark) tbody tr,
+html:not(.dark) tr[class*="bg-dark"] {
+  background-color: #F6F4EE !important;
+  border-color: #EBE7DF !important;
+}
+
+html:not(.dark) tbody tr:hover,
+html:not(.dark) tr[class*="hover:bg-dark"]:hover {
+  background-color: #FDFDFB !important;
+}
+
+html:not(.dark) td {
+  border-color: #EBE7DF !important;
+  background-color: transparent !important;
+}
+
+html:not(.dark) td.text-white,
+html:not(.dark) td [class*="text-white"] {
+  color: #141312 !important;
+  background-color: transparent !important;
+}
+
+html:not(.dark) td.text-gray-300,
+html:not(.dark) td.text-gray-400 {
+  color: #66625C !important;
+}
+
+/* Fix table action pill buttons (Edit / Delete) */
+html:not(.dark) [class*="bg-gold-900"] {
+  background-color: #FEF3C7 !important;
+  color: #92400E !important;
+  border-color: #FCD34D !important;
+}
+html:not(.dark) [class*="bg-rose-900"] {
+  background-color: #FFE4E6 !important;
+  color: #9F1239 !important;
+  border-color: #FDA4AF !important;
+}
+
+/* Light mode typography refinements - Midnight Ink Black (#141312) & Muted Sand Gray (#66625C) */
+html:not(.dark) .card .text-white,
+html:not(.dark) .card-glass .text-white,
+html:not(.dark) .card h1.text-white,
+html:not(.dark) .card h2.text-white,
+html:not(.dark) .card h3.text-white,
+html:not(.dark) p.text-white:not([data-theme-preserve="dark"] *):not(.hero-dark-banner *),
+html:not(.dark) span.text-white:not([data-theme-preserve="dark"] *):not(.hero-dark-banner *),
+html:not(.dark) div.text-white:not([data-theme-preserve="dark"] *):not(.hero-dark-banner *) {
+  color: #141312;
+}
+
+html:not(.dark) select.input-field,
+html:not(.dark) select.input-field option {
+  color: #141312 !important;
+  background-color: #FFFFFF !important;
+}
+
+html:not(.dark) .card .text-gray-200,
+html:not(.dark) .card .text-gray-300,
+html:not(.dark) .card-glass .text-gray-300 {
+  color: #66625C;
+}
+
+html:not(.dark) .card .text-gray-400,
+html:not(.dark) .card-glass .text-gray-400 {
+  color: #66625C;
+}
+
+/* Light mode gold text on light surfaces */
+html:not(.dark) .card .text-gold-400,
+html:not(.dark) .card-glass .text-gold-400 {
+  color: #8C6514;
+}
+
+html:not(.dark) .card .text-gold-300,
+html:not(.dark) .card-glass .text-gold-300 {
+  color: #7A570E;
+}
+
+/* Unselected filter tabs & pill buttons in light mode */
+html:not(.dark) button[class*="bg-dark-900"],
+html:not(.dark) button[class*="bg-dark-950"] {
+  background-color: #F6F4EE !important;
+  color: #66625C !important;
+  border-color: #EBE7DF !important;
+}
+html:not(.dark) button[class*="bg-dark-900"]:hover,
+html:not(.dark) button[class*="bg-dark-950"]:hover {
+  background-color: #FDFDFB !important;
+  color: #141312 !important;
+}
+
+/* Metric / stat boxes in light mode */
+html:not(.dark) .border-emerald-500\/30 {
+  border-color: #6EE7B7 !important;
+  background-color: #F0FDF4 !important;
+}
+html:not(.dark) .border-amber-500\/30 {
+  border-color: #FDE68A !important;
+  background-color: #FFFBEB !important;
+}
+html:not(.dark) .text-emerald-300,
+html:not(.dark) .text-emerald-400 {
+  color: #065F46 !important;
+}
+html:not(.dark) .text-amber-300 {
+  color: #92400E !important;
+}
+html:not(.dark) .bg-emerald-950\/60,
+html:not(.dark) .bg-emerald-950\/40,
+html:not(.dark) .bg-emerald-900\/40 {
+  background-color: #ECFDF5 !important;
+  border-color: #A7F3D0 !important;
+  color: #065F46 !important;
+}
+html:not(.dark) .bg-red-900\/40,
+html:not(.dark) .bg-rose-900\/40,
+html:not(.dark) .bg-rose-950\/40,
+html:not(.dark) .bg-rose-950\/30 {
+  background-color: #FFF1F2 !important;
+  border-color: #FECDD3 !important;
+  color: #9F1239 !important;
+}
+
+/* ==========================================================================
+   Dark Hero Banners & Photographic Sections in Light Mode
+   (Guarantees white titles, glowing badges, and visible text on dark photos)
+   ========================================================================== */
+html:not(.dark) [data-theme-preserve="dark"],
+html:not(.dark) .hero-dark-banner {
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) [data-theme-preserve="dark"] h1,
+html:not(.dark) [data-theme-preserve="dark"] h1.text-white,
+html:not(.dark) [data-theme-preserve="dark"] h2,
+html:not(.dark) [data-theme-preserve="dark"] h2.text-white,
+html:not(.dark) [data-theme-preserve="dark"] h3,
+html:not(.dark) [data-theme-preserve="dark"] .text-white,
+html:not(.dark) [data-theme-preserve="dark"] *[class*="text-white"],
+html:not(.dark) .hero-dark-banner h1,
+html:not(.dark) .hero-dark-banner h1.text-white,
+html:not(.dark) .hero-dark-banner h2,
+html:not(.dark) .hero-dark-banner h2.text-white,
+html:not(.dark) .hero-dark-banner h3,
+html:not(.dark) .hero-dark-banner .text-white,
+html:not(.dark) .hero-dark-banner *[class*="text-white"] {
+  color: #FFFFFF !important;
+}
+
+html:not(.dark) [data-theme-preserve="dark"] .gold-gradient-text,
+html:not(.dark) .hero-dark-banner .gold-gradient-text {
+  background: linear-gradient(to right, #FDE68A, #F59E0B, #FDE68A) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+html:not(.dark) [data-theme-preserve="dark"] .text-gold-300,
+html:not(.dark) [data-theme-preserve="dark"] .text-gold-400,
+html:not(.dark) [data-theme-preserve="dark"] p.text-gold-300,
+html:not(.dark) [data-theme-preserve="dark"] *[class*="text-gold-300"],
+html:not(.dark) [data-theme-preserve="dark"] *[class*="text-gold-400"],
+html:not(.dark) .hero-dark-banner .text-gold-300,
+html:not(.dark) .hero-dark-banner .text-gold-400,
+html:not(.dark) .hero-dark-banner p.text-gold-300,
+html:not(.dark) .hero-dark-banner *[class*="text-gold-300"],
+html:not(.dark) .hero-dark-banner *[class*="text-gold-400"] {
+  color: #FDE68A !important;
+}
+
+html:not(.dark) [data-theme-preserve="dark"] .badge-gold,
+html:not(.dark) [data-theme-preserve="dark"] span.badge-gold,
+html:not(.dark) [data-theme-preserve="dark"] *[class*="badge-gold"],
+html:not(.dark) .hero-dark-banner .badge-gold,
+html:not(.dark) .hero-dark-banner span.badge-gold,
+html:not(.dark) .hero-dark-banner *[class*="badge-gold"] {
+  background-color: rgba(245, 158, 11, 0.18) !important;
+  color: #FDE68A !important;
+  border-color: rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.25) !important;
+}
+
+html:not(.dark) [data-theme-preserve="dark"] p,
+html:not(.dark) [data-theme-preserve="dark"] p.text-gray-300,
+html:not(.dark) [data-theme-preserve="dark"] p.text-gray-400,
+html:not(.dark) [data-theme-preserve="dark"] .text-gray-300,
+html:not(.dark) [data-theme-preserve="dark"] .text-gray-400,
+html:not(.dark) .hero-dark-banner p,
+html:not(.dark) .hero-dark-banner .text-gray-300,
+html:not(.dark) .hero-dark-banner .text-gray-400 {
+  color: #E2E8F0 !important;
+}
+
+/* Primary buttons always preserve white text */
+html:not(.dark) .btn-primary,
+html:not(.dark) .btn-primary *,
+html:not(.dark) button.bg-rose-600,
+html:not(.dark) button.bg-emerald-600,
+html:not(.dark) .keep-white {
+  color: #FFFFFF !important;
+}
+
+/* ==========================================================================
+   Dark Mode Surface & Controls (The "Penthouse Lounge")
+   ========================================================================== */
+.dark .card,
+html.dark .card {
+  background-color: #1A1917 !important;
+  background-image: none !important;
+  border-color: #2A2825 !important;
+  color: #F0ECE4 !important;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.7), 0 0 1px 1px rgba(212, 175, 55, 0.08) !important;
+}
+
+.dark .card:hover,
+html.dark .card:hover {
+  border-color: rgba(212, 175, 55, 0.40) !important;
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.8), 0 0 20px -3px rgba(212, 175, 55, 0.2) !important;
+}
+
+.dark .card-glass,
+html.dark .card-glass {
+  background-color: rgba(26, 25, 23, 0.92) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-color: #2A2825 !important;
+  color: #F0ECE4 !important;
+}
+
+.dark .card-glass .text-white,
+html.dark .card-glass .text-white {
+  color: #F0ECE4 !important;
+}
+
+.dark .card-glass .text-gray-300,
+html.dark .card-glass .text-gray-300 {
+  color: #ADA79E !important;
+}
+
+.dark .card-glass .text-gray-400,
+html.dark .card-glass .text-gray-400 {
+  color: #ADA79E !important;
+}
+
+.dark .card-glass .text-gold-400,
+.dark .card-glass .text-gold-300,
+html.dark .card-glass .text-gold-400,
+html.dark .card-glass .text-gold-300 {
+  color: #FDE68A !important;
+}
+
+/* Dark mode tables & rows */
+.dark table,
+html.dark table {
+  background-color: #1A1917 !important;
+}
+
+.dark thead,
+html.dark thead,
+.dark thead[class*="bg-dark"],
+html.dark thead[class*="bg-dark"] {
+  background-color: #0E0E0D !important;
+  color: #ADA79E !important;
+}
+
+.dark thead th,
+html.dark thead th {
+  background-color: #0E0E0D !important;
+  color: #ADA79E !important;
+  border-color: #2A2825 !important;
+}
+
+.dark tbody,
+html.dark tbody,
+.dark tbody[class*="divide-dark"],
+html.dark tbody[class*="divide-dark"] {
+  background-color: #1A1917 !important;
+  border-color: #2A2825 !important;
+}
+
+.dark tbody tr,
+html.dark tbody tr,
+.dark tr[class*="bg-dark"],
+html.dark tr[class*="bg-dark"] {
+  background-color: #1A1917 !important;
+  border-color: #2A2825 !important;
+}
+
+.dark tbody tr:hover,
+html.dark tbody tr:hover,
+.dark tr[class*="hover:bg-dark"]:hover,
+html.dark tr[class*="hover:bg-dark"]:hover {
+  background-color: #24221F !important;
+}
+
+.dark td,
+html.dark td {
+  border-color: #2A2825 !important;
+}
+
+.dark select.input-field,
+.dark select.input-field option,
+.dark select option,
+html.dark select.input-field,
+html.dark select.input-field option,
+html.dark select option {
+  background-color: #141312 !important;
+  color: #F0ECE4 !important;
+}
+
+/* ==========================================================================
+   Luxury Interactive Micro-Interactions & Sliders
+   ========================================================================== */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: grab;
+}
+
+input[type="range"]:active {
+  cursor: grabbing;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F3D78F 0%, #D4AF37 50%, #B8860B 100%);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 12px rgba(212, 175, 55, 0.5);
+  cursor: grab;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.dark input[type="range"]::-webkit-slider-thumb {
+  border-color: #1A1917;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 16px rgba(212, 175, 55, 0.7);
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.22);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 55, 0.8);
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F3D78F 0%, #D4AF37 50%, #B8860B 100%);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 12px rgba(212, 175, 55, 0.5);
+  cursor: grab;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+/* Dynamic Input & Select Focus Glow */
+.input-field:focus {
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+}
+
+/* Subtle Interactive Link Hover Underline */
+.hover-underline-gold {
+  position: relative;
+  display: inline-block;
+}
+.hover-underline-gold::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -2px;
+  left: 0;
+  background-color: #D4AF37;
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-underline-gold:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Smooth Table Row Hover */
+tbody tr {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* ==========================================================================
+   Accessibility: prefers-reduced-motion compliance
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

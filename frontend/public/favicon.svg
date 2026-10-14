@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37" />
+      <stop offset="50%" stop-color="#F3E5AB" />
+      <stop offset="100%" stop-color="#AA820A" />
+    </linearGradient>
+  </defs>
+  <!-- Background Badge -->
+  <rect width="32" height="32" rx="8" fill="#0A0D14" />
+  <rect x="1" y="1" width="30" height="30" rx="7" stroke="url(#goldGrad)" stroke-width="1.2" opacity="0.6" />
+  
+  <!-- Crown Star Top -->
+  <path d="M16 5.5L17.3 8.3L20.4 8.7L18.1 10.9L18.7 14L16 12.5L13.3 14L13.9 10.9L11.6 8.7L14.7 8.3L16 5.5Z" fill="url(#goldGrad)" />
+  
+  <!-- Hotel Roof Pediment -->
+  <path d="M6 15.5L16 10L26 15.5H6Z" fill="url(#goldGrad)" />
+  
+  <!-- Pillars -->
+  <rect x="7.5" y="17" width="2" height="7" rx="0.5" fill="url(#goldGrad)" />
+  <rect x="11.5" y="17" width="2" height="7" rx="0.5" fill="url(#goldGrad)" />
+  <rect x="18.5" y="17" width="2" height="7" rx="0.5" fill="url(#goldGrad)" />
+  <rect x="22.5" y="17" width="2" height="7" rx="0.5" fill="url(#goldGrad)" />
+  
+  <!-- Arch Center Entrance -->
+  <path d="M14.5 24V18.5C14.5 17.7 15.2 17 16 17C16.8 17 17.5 17.7 17.5 18.5V24H14.5Z" fill="url(#goldGrad)" opacity="0.8" />
+  
+  <!-- Foundation Base -->
+  <rect x="5" y="24.5" width="22" height="2" rx="0.5" fill="url(#goldGrad)" />
+</svg>
